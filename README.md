@@ -53,7 +53,7 @@ The model builds on [STyMo](https://doi.org/10.1145/3811356): Ponton, Winkler, K
 
 The video model: [Wan 2.7](https://www.alibabacloud.com/help/en/model-studio/wan-video-editing-api-reference) (Alibaba).
 
-The robot: the [Unitree G1](https://www.unitree.com/g1), under NVIDIA's [GEAR-SONIC](https://arxiv.org/abs/2511.07820) balance controller (Luo et al., "SONIC: Supersizing Motion Tracking for Natural Humanoid Whole-Body Control", 2025), the motions mapped onto it with [GMR](https://arxiv.org/abs/2510.02252) (Araujo et al., "Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking", 2025), simulated in [MuJoCo](https://mujoco.org/).
+The robot: the [Unitree G1](https://www.unitree.com/g1), under NVIDIA's [GEAR-SONIC](https://doi.org/10.1126/scirobotics.aed4592) balance controller (Luo et al., "SONIC: Supersizing motion tracking for natural humanoid whole-body control", Science Robotics 2026), the motions mapped onto it with [GMR](https://arxiv.org/abs/2510.02252) (Araujo et al., "Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking", 2025), simulated in [MuJoCo](https://mujoco.org/).
 
 ## To refer to this page
 

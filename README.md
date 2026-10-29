@@ -20,6 +20,7 @@ A project page, not a paper and not software to install. It shows a motion model
 - **In the shot.** A skid and a kick rendered into the person's own footage by a video model, each shown three ways: the original input, the output at the person's pace, and the same output a quarter faster.
 - **On a robot.** A walk from his own films, kept out of training, on a Unitree G1 in simulation, with the original input on the same robot beside it.
 - **Method** and **How it is made.** From his films to a fit, the pairs, the training, and the single solve that keeps the output on the person's path and footing.
+- **What's next.** What the training clips hold and where his manner shows most, two ways to grow the data, finer phases, and better pairs.
 
 Some captions point at moments where his manner shows. Each time is a link: a click sends every panel of that clip to one second before the moment and plays it.
 

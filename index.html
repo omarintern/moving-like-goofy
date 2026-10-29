@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moving Like Goofy</title>
+<meta name="description" content="Project page: teaching any character a cartoon's way of moving, from 71 example clips, with Goofy as the first subject; now also on a humanoid robot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* A project page in the shape of a research project page: title, authors, teaser, abstract, results (with the robot), method, how it is made, limitations. One centred column. */
+:root {
+  --bg: #ffffff; --fg: #1c1c20; --muted: #5f5f66; --rule: #e6e6e3; --soft: #f5f5f2; --accent: #1d4ed8; --pill: #eef2ff; --btn: #1c1c20; --btn-fg: #ffffff; --slot: #b7b7b2;
+  --sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0e0e10; --fg: #ececea; --muted: #9c9c98; --rule: #26262a; --soft: #161619; --accent: #8ab4ff; --pill: #1b2440; --btn: #ececea; --btn-fg: #0e0e10; --slot: #4a4a50; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0e0e10; --fg: #ececea; --muted: #9c9c98; --rule: #26262a; --soft: #161619; --accent: #8ab4ff; --pill: #1b2440; --btn: #ececea; --btn-fg: #0e0e10; --slot: #4a4a50; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.6; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; -webkit-font-smoothing: antialiased; }
+.page { max-width: 880px; margin: 0 auto; display: grid; gap: 56px; }
+.page > *, section > * { min-width: 0; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.6vw, 44px); line-height: 1.15; font-weight: 700; text-align: center; letter-spacing: -0.01em; }
+h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 19px; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+.head { display: grid; gap: 18px; justify-items: center; text-align: center; }
+.authors { font-size: 18px; }
+.authors sup { font-size: 11px; margin-left: 1px; }
+.aff { color: var(--muted); font-size: 15px; }
+.subtitle { font-size: clamp(17px, 2.2vw, 22px); line-height: 1.35; color: var(--muted); max-width: 44ch; margin-top: -8px; }
+.pill { font-family: var(--mono); font-size: 13px; background: var(--pill); color: var(--accent); padding: 6px 12px; border-radius: 6px; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.btn { font-family: var(--mono); font-size: 13px; background: var(--btn); color: var(--btn-fg); text-decoration: none; padding: 9px 16px; border-radius: 999px; }
+.btn:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.teaser { display: grid; grid-template-columns: 1.6fr auto 1fr auto 1fr; gap: 10px; align-items: center; }
+.teaser figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.teaser video { display: block; width: 100%; max-width: 100%; height: auto; background: #3a3a3c; border-radius: 4px; }
+.teaser figcaption, .step { font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; line-height: 1.4; }
+.step { display: grid; justify-items: center; gap: 2px; padding-inline: 2px; }
+.step svg { width: 34px; height: 14px; display: block; }
+.step svg path { stroke: var(--muted); fill: none; stroke-width: 1.5; }
+@media (max-width: 640px) { .teaser { grid-template-columns: 1fr; } .step svg { transform: rotate(90deg); } }
+.lead { color: var(--muted); font-size: 15px; line-height: 1.55; max-width: 76ch; margin: 0 auto; text-align: center; }
+section { display: grid; gap: 18px; }
+.rule { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; }
+section p { max-width: 70ch; }
+figure.wide { margin: 0; display: grid; gap: 8px; }
+figure.wide video { display: block; width: 100%; max-width: 100%; height: auto; background: #3a3a3c; border-radius: 6px; }
+figcaption { color: var(--muted); font-size: 14px; line-height: 1.5; }
+figure.strip { justify-self: center; width: max(100%, min(calc(100vw - 56px), var(--strip-w, 2544px))); gap: 0; }  /* the wide strips (three panels, the five-panel chain) break out of the column, up to their own width */
+figure.strip video { border-radius: 6px 6px 0 0; }
+figure.strip figcaption { width: 100%; background: #3a3a3c; color: #d4d4d0; padding: 10px max(16px, calc((100% - 880px) / 2)) 12px; border-radius: 0 0 6px 6px; }  /* the caption a band on the strip's own foot, the grey of its label band, so it cannot be read as the next strip's */
+figure.strip figcaption b { color: #ffffff; }
+figure.strip + figure.strip { margin-top: 12px; }
+.note { color: var(--muted); font-size: 14px; line-height: 1.5; text-align: center; max-width: 76ch; margin: -6px auto 0; }  /* the overview's marked moment, under the row of three */
+a.seek { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; }  /* a mark: every panel of the clip to one second before the moment, and play */
+figure.strip figcaption a.seek { color: #9ec1ff; }
+.moment { display: block; margin-top: 4px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pair video { min-width: 0; }
+@media (max-width: 520px) { .pair { grid-template-columns: 1fr; } }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }  /* Results after the first two: two across on a laptop, one on a phone (his word 10-29) */
+.grid2 .pair { gap: 4px; }
+.grid2 figure.cell { gap: 6px; }
+@media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+.slotbox { aspect-ratio: 16 / 5; max-width: 100%; border: 2px dashed var(--slot); border-radius: 6px; display: grid; place-content: center; gap: 6px; text-align: center; padding: 16px; color: var(--muted); }
+.slotname { font-family: var(--mono); font-size: 13px; }
+.slothint { font-size: 13px; max-width: 48ch; }
+.method { background: var(--soft); border: 1px solid var(--rule); border-radius: 8px; padding: 14px; overflow-x: auto; }
+.method svg { display: block; width: 100%; min-width: 900px; height: auto; font-family: var(--mono); }
+.method rect { fill: var(--bg); stroke: var(--rule); }
+.method rect.ours { stroke: var(--accent); stroke-width: 1.5; }
+.method text { fill: var(--fg); font-size: 12px; }
+.method text.small { fill: var(--muted); font-size: 10.5px; }
+.method path { stroke: var(--muted); fill: none; stroke-width: 1.3; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
+th, td { padding: 9px 10px; border-bottom: 1px solid var(--rule); text-align: right; white-space: nowrap; }
+thead th { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; }
+th[scope="row"], thead th:first-child { text-align: left; font-weight: 500; white-space: normal; }
+ol, ul { margin: 0; padding-left: 22px; display: grid; gap: 10px; max-width: 70ch; }
+small, .small { color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--rule); padding-top: 18px; display: grid; gap: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="head">
+    <h1>Moving Like Goofy</h1>
+    <div class="subtitle">Teaching any character a cartoon's way of moving, from 71 example clips</div>
+    <div class="authors">Omar Alromaihi</div>
+    <div class="pill">Technical report · October 2026 · work in progress</div>
+    <div class="btns">
+      <a class="btn" href="#results">Results</a>
+      <a class="btn" href="#robot">On a robot</a>
+      <a class="btn" href="#method">Method</a>
+      <a class="btn" href="#made">How it is made</a>
+    </div>
+  </header>
+
+  <div style="display:grid; gap:14px">
+  <div class="teaser" aria-label="Overview: 71 short clips, 195 seconds of his footage, 103 minutes of training on one GPU; any plain performance comes out with his bearing">
+    <figure data-clip="films">
+      <video autoplay muted loop playsinline preload="metadata" poster="media/his_films_poster.png"><source src="media/his_films.mp4" type="video/mp4"></video>
+      <figcaption>Goofy beside a person, from his films</figcaption>
+    </figure>
+    <div class="step"><svg viewBox="0 0 34 14" aria-hidden="true"><path d="M1 7 H31 M25 2 L31 7 L25 12"/></svg><span>training<br>103 minutes</span></div>
+    <figure data-clip="overview">
+      <video autoplay muted loop playsinline preload="metadata" poster="media/teaser_golf1_plain_poster.jpg" data-sync="teaser"><source src="media/teaser_golf1_plain.mp4" type="video/mp4"></video>
+      <figcaption>Original input: a person's performance</figcaption>
+    </figure>
+    <div class="step"><svg viewBox="0 0 34 14" aria-hidden="true"><path d="M1 7 H31 M25 2 L31 7 L25 12"/></svg><span>his bearing<br>added</span></div>
+    <figure data-clip="overview">
+      <video autoplay muted loop playsinline preload="metadata" poster="media/teaser_golf1_bearing_poster.jpg" data-sync="teaser"><source src="media/teaser_golf1_bearing.mp4" type="video/mp4"></video>
+      <figcaption>Goofy-style output</figcaption>
+    </figure>
+  </div>
+  <p class="note">At <a class="seek" href="#" data-seek="overview:4.77" title="jump the clip to one second before 4.8 s and play">4.8 s</a>: After the strike, he sinks into a new pose and settles there, loose and passive, the way he does in his films.</p>
+  <p class="lead">His way of moving is learned from his own films, 71 short clips, each one paired with a person doing the same action plainly. His posture is one fixed pose, set by hand. After that any plain performance comes out as his. The pair clip plays the person and Goofy together; the two clips after it are one original input, a golf swing, and its Goofy-style output.</p>
+  </div>
+
+  <section class="abstract" id="abstract">
+    <h2>Abstract</h2><div class="rule"></div>
+    <p>Video models can draw Goofy, but they move him like everyone else: the motion comes from what they know about people in general. The way he carries himself, the hunch, the bent knees, the loose stride, lives only in his films, the Disney shorts of the 1940s. This project takes it from there: his way of moving learned from 71 short clips, 195 seconds in all, in 103 minutes of training on one GPU, and his posture one fixed pose, set by hand.</p>
+    <p>The model builds on <a href="https://doi.org/10.1145/3811356">STyMo</a>, and the split of a style into a posture and a way of moving through it is STyMo's; STyMo learns from motion capture. What this project adds: the character's manner learned from his films instead; the extraction and checks that make old film usable as training data, reading his pose off drawings that slide and cheat the camera, marking what is usable frame by frame, measuring his travel against fixed objects in the shot and leaving travel out where there are none; a cleanup that keeps him on the person's path and footing, every planted foot at the person's own spot, nothing through the floor; and two uses after the motion, a video model painting him into the original shot and a humanoid robot. Here the posture is one fixed pose, set by hand, and only the way of moving is learned from the example clips.</p>
+    <p>Any plain performance then comes out as his. Below: Goofy-style outputs beside their original inputs on actions he never performs in his films, the model as it grew from 17 to 40 to 71 example clips, and his own held-out walk on a Unitree G1 humanoid under a ready-made balance controller with physics simulated, where it did not fall.</p>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2><div class="rule"></div>
+    <p>Left: the original input, a person doing the action. Right: the Goofy-style output, the same action with his bearing, from the model trained on 71 example clips. The two run on one clock, with the frame number in the corner.</p>
+    <figure class="wide" data-slot="result_1" data-clip="result_1" data-pick="cand2_shotput1"><div class="pair"><video autoplay muted loop playsinline preload="metadata"><source src="media/shotput1__person.mp4" type="video/mp4"></video><video autoplay muted loop playsinline preload="metadata"><source src="media/shotput1__plant2.mp4" type="video/mp4"></video></div><figcaption>A shot put. Left: the original input, a person recorded with motion capture. Right: the Goofy-style output, the same performance with his bearing. One clock.</figcaption></figure>
+    <figure class="wide" data-slot="result_2" data-clip="result_2" data-pick="cand2_fit_golf1_l"><div class="pair"><video autoplay muted loop playsinline preload="metadata"><source src="media/fit_golf1_l__person.mp4" type="video/mp4"></video><video autoplay muted loop playsinline preload="metadata"><source src="media/fit_golf1_l__plant2.mp4" type="video/mp4"></video></div><figcaption>A golf swing. Left: the original input, a video clip of a person, with the body motion read off it. Right: the Goofy-style output, the same performance with his bearing. One clock. <a class="seek" href="#" data-seek="result_2:4.77" title="jump the clip to one second before 4.8 s and play">After the strike, he sinks into a new pose and settles there, loose and passive, the way he does in his films. The person never does this; it comes from habits the model learned across his clips. (4.8 s)</a></figcaption></figure>
+    <div class="grid2"><figure class="wide cell" data-slot="result_3" data-clip="result_3" data-pick="cand2_fit_bus1_l"><div class="pair"><video autoplay muted loop playsinline preload="metadata"><source src="media/fit_bus1_l__person.mp4" type="video/mp4"></video><video autoplay muted loop playsinline preload="metadata"><source src="media/fit_bus1_l__plant2.mp4" type="video/mp4"></video></div><figcaption>At a bus stop as the bus arrives.</figcaption></figure><figure class="wide cell" data-slot="result_4" data-clip="result_4" data-pick="cand2_ballet1"><div class="pair"><video autoplay muted loop playsinline preload="metadata"><source src="media/ballet1__person.mp4" type="video/mp4"></video><video autoplay muted loop playsinline preload="metadata"><source src="media/ballet1__plant2.mp4" type="video/mp4"></video></div><figcaption>A ballet phrase.</figcaption></figure></div>
+
+    <h3>The model as it grew: trained on 17, 40 and 71 example clips</h3>
+    <p>The same original input through three stages of the model, on one clock, left to right, from the fewest example clips to the most. Every example clip was checked by eye before it went into training, so the model only ever learns what was reviewed.</p>
+    <figure class="wide" data-slot="prog_1" data-clip="prog_1" data-pick="cand2_prog_fit_kick1_l"><video autoplay muted loop playsinline preload="metadata"><source src="media/cand2__prog_fit_kick1_l.mp4" type="video/mp4"></video><figcaption>A kick. The Goofy-style output from the model as it grew, left to right, from the fewest example clips to the most. One clock.</figcaption></figure>
+    <figure class="wide" data-slot="prog_2" data-clip="prog_2" data-pick="cand2_prog_fit_skid1_l"><video autoplay muted loop playsinline preload="metadata"><source src="media/cand2__prog_fit_skid1_l.mp4" type="video/mp4"></video><figcaption>A skid. The Goofy-style output from the model as it grew, left to right, from the fewest example clips to the most. One clock.</figcaption></figure>
+
+    <h3 id="shot">In the shot</h3>
+    <p>Two results painted back into their own footage by a video model, each shown three ways: the original input, the Goofy-style output at the person's pace, and the same output a quarter faster, differing only in the clock. The model keeps the person's timing by design, and sped up it reads more like him, which suggests his pace is part of his manner.</p>
+    <figure class="wide strip" style="--strip-w: 2544px" data-clip="shot_1"><video autoplay muted loop playsinline preload="metadata" poster="media/inshot_skid1_alibaba_plantE_poster.jpg"><source src="media/inshot_skid1_alibaba_plantE.mp4" type="video/mp4"></video>
+    <figcaption><b>A skid, painted back into its own footage.</b> Left: the original input. Middle: the Goofy-style output rendered into the shot by a video model, from the model trained on 71 example clips, re-paced to the person's pace. Right: the same render as the video model returned it, a quarter fast because the figure it was given ran a quarter fast; the two differ only in the clock, and it ends early and holds its last frame. The number in each corner is that clip's own time.<span class="moment">At <a class="seek" href="#" data-seek="shot_1:1.07" title="jump the clip to one second before 1.1 s and play">1.1 s</a>: a lean to his left and a few wary head turns, as if cautious of the dog. The model never sees the dog; it only adds his manner to the person's motion.</span></figcaption></figure>
+    <figure class="wide strip" style="--strip-w: 2544px" data-clip="shot_2"><video autoplay muted loop playsinline preload="metadata" poster="media/inshot_kick1_alibaba_lvlE_poster.jpg"><source src="media/inshot_kick1_alibaba_lvlE.mp4" type="video/mp4"></video>
+    <figcaption><b>A kick, painted back into its own footage.</b> Left: the original input. Middle: the Goofy-style output rendered into the shot by a video model, from the model trained on 71 example clips, re-paced to the person's pace. Right: the same render as the video model returned it, a quarter fast because the figure it was given ran a quarter fast; the two differ only in the clock, and it ends early and holds its last frame. The number in each corner is that clip's own time.</figcaption></figure>
+
+    <h3 id="robot">On a robot</h3>
+    <p>The original input here is the plain version of a walk he did in his films, held out of training. The model gave it his manner, and the result ran on a humanoid robot in a physics simulation without falling, under a ready-made balance controller with the original input on the same robot beside it.</p>
+    <figure class="wide" data-clip="robot"><video autoplay muted loop playsinline preload="metadata" poster="media/A018.jpg"><source src="media/A018.mp4" type="video/mp4"></video><figcaption><b>A walk from his own films, kept out of training.</b> Left: the original input on the robot. Right: the Goofy-style output on the robot. The frame number is the clip's.</figcaption></figure>
+  </section>
+
+  <section id="method">
+    <h2>Method Overview</h2><div class="rule"></div>
+    <div class="method">
+      <svg viewBox="0 0 874 296" role="img" aria-label="From his films to his 3D pose, a person doing the same action, the pair, the dataset and the model; at run time a new input through the operator, one solve, the checks and review, to a video model or a robot"><rect x="10" y="36" width="136" height="64" rx="6"/><text x="78.0" y="55" text-anchor="middle">his films</text><text x="78.0" y="71" text-anchor="middle" class="small">one action each</text><path d="M146 68.0 H160 M154 63.0 L160 68.0 L154 73.0"/><rect x="160" y="36" width="136" height="64" rx="6"/><text x="228.0" y="55" text-anchor="middle">his fits</text><text x="228.0" y="71" text-anchor="middle" class="small">his 3D pose read off the film</text><text x="228.0" y="85" text-anchor="middle" class="small">what is usable, marked by eye</text><path d="M296 68.0 H310 M304 63.0 L310 68.0 L304 73.0"/><rect x="310" y="36" width="136" height="64" rx="6"/><text x="378.0" y="55" text-anchor="middle">a neutral</text><text x="378.0" y="71" text-anchor="middle" class="small">a person doing the same action</text><text x="378.0" y="85" text-anchor="middle" class="small">generated, captured or filmed</text><path d="M446 68.0 H460 M454 63.0 L460 68.0 L454 73.0"/><rect x="460" y="36" width="136" height="64" rx="6"/><text x="528.0" y="55" text-anchor="middle">the pair</text><text x="528.0" y="71" text-anchor="middle" class="small">the two aligned in time</text><text x="528.0" y="85" text-anchor="middle" class="small">his fit corrected only where it breaks</text><path d="M596 68.0 H610 M604 63.0 L610 68.0 L604 73.0"/><rect x="610" y="36" width="136" height="64" rx="6"/><text x="678.0" y="55" text-anchor="middle">the dataset</text><text x="678.0" y="71" text-anchor="middle" class="small">71 pairs, 4 kept out for testing</text><text x="678.0" y="85" text-anchor="middle" class="small">labels, foot contacts, hands</text><path d="M746 68.0 H760 M754 63.0 L760 68.0 L754 73.0"/><rect x="760" y="36" width="136" height="64" rx="6" class="ours"/><text x="828.0" y="55" text-anchor="middle">the model</text><text x="828.0" y="71" text-anchor="middle" class="small">STyMo: learns the residual,</text><text x="828.0" y="85" text-anchor="middle" class="small">the difference, person to him</text><rect x="10" y="190" width="136" height="64" rx="6"/><text x="78.0" y="209" text-anchor="middle">a new input</text><text x="78.0" y="225" text-anchor="middle" class="small">a person, captured, generated</text><text x="78.0" y="239" text-anchor="middle" class="small">or filmed; prepared the same way</text><path d="M146 222.0 H160 M154 217.0 L160 222.0 L154 227.0"/><rect x="160" y="190" width="136" height="64" rx="6" class="ours"/><text x="228.0" y="209" text-anchor="middle">the operator</text><text x="228.0" y="225" text-anchor="middle" class="small">adds the residual</text><text x="228.0" y="239" text-anchor="middle" class="small">on the person's path</text><path d="M296 222.0 H310 M304 217.0 L310 222.0 L304 227.0"/><rect x="310" y="190" width="136" height="64" rx="6"/><text x="378.0" y="209" text-anchor="middle">one solve</text><text x="378.0" y="225" text-anchor="middle" class="small">feet held, hands kept,</text><text x="378.0" y="239" text-anchor="middle" class="small">floor, joint ranges, speeds</text><path d="M446 222.0 H460 M454 217.0 L460 222.0 L454 227.0"/><rect x="460" y="190" width="136" height="64" rx="6"/><text x="528.0" y="209" text-anchor="middle">the checks</text><text x="528.0" y="225" text-anchor="middle" class="small">slides, feet, seats</text><text x="528.0" y="239" text-anchor="middle" class="small">reported, never acted on</text><path d="M596 222.0 H610 M604 217.0 L610 222.0 L604 227.0"/><rect x="610" y="190" width="136" height="64" rx="6"/><text x="678.0" y="209" text-anchor="middle">review</text><text x="678.0" y="225" text-anchor="middle" class="small">by eye, beside the person</text><text x="678.0" y="239" text-anchor="middle" class="small">frame numbers burned in</text><path d="M828.0 100 V130 H228.0 V184 M223.0 178 L228.0 184 L233.0 178"/><path d="M746 222.0 H760 M754 217.0 L760 222.0 L754 227.0"/><rect x="760" y="160" width="104" height="44" rx="6"/><text x="812.0" y="179" text-anchor="middle">video model</text><text x="812.0" y="195" text-anchor="middle" class="small">renders him into the shot</text><rect x="760" y="240" width="104" height="44" rx="6"/><text x="812.0" y="259" text-anchor="middle">robot</text><text x="812.0" y="275" text-anchor="middle" class="small">takes the joints directly</text><path d="M758 222.0 V182 H760 M758 222.0 V262 H760"/><text x="10" y="22" class="small">training, 103 minutes</text><text x="10" y="176" class="small">run time, seconds</text><path d="M10 130 H746" stroke-dasharray="3 4"/></svg>
+    </div>
+    <p>The model builds on <a href="https://doi.org/10.1145/3811356">STyMo</a> (Ponton, Winkler, Kavan, Ye and Kadlecek, SIGGRAPH 2026): the split of a style into two parts, a posture and a way of moving through it, is STyMo's. Here the posture is not learned. It is one fixed pose: his posture offsets at the legs, spine, neck and head, frozen into a single rest pose by hand and laid onto every input the same way before the model, with the knee bend fading as the input's own knees bend; at run time the average of what posture remains across the example clips is added on top. The way of moving is the learned part: the residual from the person's motion to his, over the example clips. Around STyMo this project adds the character's manner learned from his films rather than from motion capture; the extraction and checks that make old film usable as training data, his travel measured against fixed objects in the shot and left out where there are none; the final pass that keeps him on the person's path and footing; and the two uses after the motion, the video model and the robot.</p>
+    <p>From his films to a fit. A fit is the 3D pose of a body read off the film, frame by frame, on a skeleton of 22 joints; each of his clips is fitted, and what is usable is marked by eye, so only the passes go further. A neutral for each clip: a person doing the same action plainly, on their own clock, whether generated by a motion model, recorded with motion capture, or filmed and fitted. The pair is his clip and its neutral aligned in time, with his fit corrected only where it breaks the line of the action, never his manner. Every input, his and the person's, is built one way: the bearing, the fixed pose laid onto the body, then the knee saturation, which fades its knee bend as the person's own knees bend, so a deep bend is not bent further. The dataset is 71 pairs with 4 kept out for testing, and the model is a small transformer that learns the residual: the difference from the person's motion to his, over windows of 16 frames.</p>
+    <p>At run time a new original input is prepared the same way, and the operator, the step that lays the residual onto it, produces the Goofy-style output. Then one solve, a single pass that settles everything at once, brings the result as close to the model's output as the rules allow: every stance, a foot held on the floor, kept at the original input's own foot spot; held hands kept on their grips; nothing under the floor; every joint inside his ranges; no point changing speed faster than his films do; the body on the original input's path. Where the rules cannot all hold, the conflict is reported, never traded quietly. The checks run on every output and are reported to a reviewer, never acted on by themselves. The output is a pose for every frame, as joint rotations: a video model renders him into the shot from it, and a robot takes it directly.</p>
+    <p>Cartoon footage is hard to fit. The camera follows him, his drawn feet slide on the painted ground, and a pose reader trained on people folds a leg the wrong way or swaps his legs. We mark when each foot is down and where the leg joints are on a few drawings, train models to mark the rest, and refit his legs with his own bone lengths, starting from the human reading. How far he travels is measured against a fixed object in the scene; where there is none, travel is left out of training.</p>
+
+  </section>
+
+  <section id="made">
+    <h2>How it is made</h2><div class="rule"></div>
+    <figure class="wide strip" style="--strip-w: 3136px" data-clip="chain">
+      <video autoplay muted loop playsinline preload="metadata"><source src="media/kick_chain.mp4" type="video/mp4"></video>
+      <figcaption>One clock, left to right: the original input, a person's clip; its 3D pose read off it; the Goofy-style output, his posture and motion on the original input's path, feet on the floor; the same output seen from the shot's camera; a video model rendering him into the shot from it. A kick, from the earliest model, trained on 17 example clips, before the final pass.</figcaption>
+    </figure>
+  </section>
+
+
+
+  <section id="next">
+    <h2>A later stage</h2><div class="rule"></div>
+    <p>Today's example clips put his clip beside a person's performance of the same action, aligned in time. The two are not one to one: a different step, a different hand, and the model learns that difference as style. A later stage builds the plain version out of his own clip, pushing it toward ordinary human motion with a model of how people move while keeping what the action is, and chooses per clip which aspects are made plain and which are kept. In a first probe on three clips the difference the model has to learn fell from about 30 degrees per joint to 6, with his kick height and crouch depth landing in that difference rather than in the plain version.</p>
+  </section>
+
+  <footer>
+    <div>Omar Alromaihi, 2026.</div>
+    <div>Goofy is a Disney character; the footage is the 1940s shorts, used here as the subject of study. The robot is a Unitree G1 in simulation under NVIDIA's GEAR-SONIC balance controller; the motions were mapped onto it with GMR, an open retargeting tool. The model builds on <a href="https://doi.org/10.1145/3811356">STyMo</a>: Ponton, Winkler, Kavan, Ye and Kadlecek, "STyMo: Fast and Controllable Few-Shot Motion Style Transfer", SIGGRAPH 2026 (<a href="https://joseluisponton.com/stymo-project-page/">project page</a>).</div>
+  </footer>
+</div>
+<script>
+(function () {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    Array.prototype.forEach.call(document.querySelectorAll("video"), function (v) { v.removeAttribute("autoplay"); v.controls = true; });
+  var vs = document.querySelectorAll('video[data-sync="teaser"]');          // the overview's two clips play in step: the second follows the first
+  if (vs.length === 2) {
+    var a = vs[0], b = vs[1];
+    var align = function () { if (Math.abs(a.currentTime - b.currentTime) > 0.08) b.currentTime = a.currentTime; };
+    a.addEventListener("timeupdate", align);
+    a.addEventListener("play", function () { b.currentTime = a.currentTime; b.play().catch(function () {}); });
+  }
+  document.addEventListener("click", function (e) {                   // the marks' links: every panel of that clip to one second before the moment, at normal speed
+    var l = e.target && e.target.closest ? e.target.closest("a.seek") : null; if (!l) return; e.preventDefault();
+    var p = l.getAttribute("data-seek").split(":"), t = Math.max(0, parseFloat(p[1]) - 1);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-clip="' + p[0] + '"] video'), function (v) { v.playbackRate = 1; v.currentTime = t; v.play().catch(function () {}); });
+  });
+})();
+</script>
+</body>
+</html>

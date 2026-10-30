@@ -12,7 +12,7 @@ Omar Alromaihi · Technical report, October 2026 · work in progress
 
 ## What this is
 
-A project page, not a paper and not software to install. It shows a motion model that learned Goofy's way of moving from his own films: 71 short clips, 195 seconds of footage from the Disney shorts of the 1940s and early 1950s, each paired with a generated plain performance of the same action, trained for 103 minutes on one GPU. After that, any plain performance comes out as his. The page shows the results as 3D figures beside the original input. It also shows results from the previous version of the cleanup, painted back into the person's own footage by a video model and performed by a humanoid robot in a physics simulation.
+A project page, not a paper and not software to install. It shows a motion model that learned Goofy's way of moving from his own films: 71 short clips, 195 seconds of footage from the Disney shorts of the 1940s and early 1950s, each paired with a generated plain performance of the same action, trained for 103 minutes on one GPU. The clips were chosen by hand: scene detection on 45 of his films found 3,812 scenes and shots, 657 of them were judged by hand, and 64 were kept, giving the 71 training pairs and four held out to check the model. After that, any plain performance comes out as his. The page shows the results as 3D figures beside the original input. It also shows results from the previous version of the cleanup, painted back into the person's own footage by a video model and performed by a humanoid robot in a physics simulation.
 
 ## What is on the page
 

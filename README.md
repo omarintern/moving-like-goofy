@@ -33,7 +33,7 @@ The model builds on [STyMo](https://doi.org/10.1145/3811356) (Ponton, Winkler, K
 The page and its clips. Nothing to build or run.
 
 - `index.html`: the page.
-- `media/`: the 17 videos and 6 posters it plays.
+- `media/`: the 17 videos and 6 posters it plays, and the 9 pictures of the Method figure.
 
 Open `index.html` in a browser, or visit the project page.
 
